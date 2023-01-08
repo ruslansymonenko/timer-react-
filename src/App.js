@@ -11,18 +11,18 @@ class App extends React.Component {
     }
   }
 
-  timerInterval = () => {
-    setInterval(() => {
+  timerStart = () => {
+    this.setState({isCounting: true});
+
+    this.counterId = setInterval(() => {
       this.setState({timerCount: this.state.timerCount + 1})
     }, 1000)
   }
 
-  timerStart = () => {
-
-  }
-
   timerStop = () => {
+    this.setState({isCounting: false});
 
+    clearInterval(this.counterId);
   }
 
 
@@ -32,7 +32,7 @@ class App extends React.Component {
         <div className='timer'>
           <div className='time'>{this.state.timerCount}</div>
           <div className='btns'>
-            {!this.state.isCounting} ? (
+            {!this.state.isCounting ? (
               <button 
               className='startBtn btn'
               onClick={this.timerStart}>
@@ -44,7 +44,7 @@ class App extends React.Component {
               onClick={this.timerStop}>
                 Stop
               </button>
-            )
+            )}
             <button className='resetBtn btn'>Reset</button>
           </div>
         </div>
