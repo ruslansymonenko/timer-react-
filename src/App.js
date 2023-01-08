@@ -11,6 +11,22 @@ class App extends React.Component {
     }
   }
 
+  componentDidMount() {
+    const userCount = localStorage.getItem('timer');
+
+    if (userCount) {
+      this.setState({timerCount: parseInt(userCount)})
+    }
+  }
+
+  componentDidUpdate () {
+    localStorage.setItem('timer', this.state.timerCount)
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.counterId);
+  }
+
   timerStart = () => {
     this.setState({isCounting: true});
 
