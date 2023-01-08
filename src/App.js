@@ -25,6 +25,12 @@ class App extends React.Component {
     clearInterval(this.counterId);
   }
 
+  timerReset = () => {
+    this.setState({isCounting: false, timerCount: 0});
+
+    clearInterval(this.counterId);
+  }
+
 
   render() {
     return (
@@ -45,7 +51,11 @@ class App extends React.Component {
                 Stop
               </button>
             )}
-            <button className='resetBtn btn'>Reset</button>
+            <button 
+              className='resetBtn btn'
+              onClick={this.timerReset}>
+                Reset
+            </button>
           </div>
         </div>
       </div>
